@@ -16,7 +16,7 @@
     </head>
     <body>
         <header>
-            <h1>InstaGrim ! </h1>
+            <h1>InstaGrim! </h1>
             <h2>Your world in Black and White</h2>
         </header>
         <nav>
@@ -47,7 +47,7 @@
         <footer>
             <ul>
                 <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Andy C</li>
+                <li>&COPY; Will Neal</li>
             </ul>
         </footer>
     </body>
