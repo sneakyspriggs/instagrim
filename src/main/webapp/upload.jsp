@@ -23,9 +23,11 @@
         </nav>
  
         <article>
+            
+            <!-- Added accept="image/*" to filter image types automatically in the browser-->
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
-                File to upload: <input type="file" name="upfile"><br/>
+                File to upload: <input type="file" accept="image/*" name="upfile"><br/>
 
                 <br/>
                 <input type="submit" value="Press"> to upload the file!
