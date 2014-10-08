@@ -52,6 +52,17 @@ public class Login extends HttpServlet {
         String password=request.getParameter("password");
         String email="null";
         
+        if (username.equals(""))
+        {
+            error("Enter a username",response);
+            return;
+        }
+        else if (password.equals(""))
+        {
+            error("Enter a password", response);
+            return;
+        }
+        
         User us=new User();
         us.setCluster(cluster);
         boolean isValid=us.IsValidUser(username, password);
@@ -84,4 +95,13 @@ public class Login extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void error(String something, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = null;
+        out = new PrintWriter(response.getOutputStream());
+        out.println("<h1>Input Error</h1>");
+        out.println("<h2>" + something + "</h2>");
+        out.close();
+        return;
+    }
+    
 }
