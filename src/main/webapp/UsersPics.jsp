@@ -16,38 +16,53 @@
     </head>
     <body>
         <header>
-        
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
+
+            <h1>InstaGrim ! </h1>
+            <h2>Your world in Black and White</h2>
         </header>
-        
+
         <nav>
             <ul>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                    <%
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getlogedin()) {
+                    %>
+                <br>
+                <li><% out.println("You are logged in as " + lg.getUsername());%></li>
+                <li><a href="/Instagrim/Logout">Logout</a></li>
+                    <%--This line for when email is properly working --%>
+                    <%--<li><% out.println("You are logged in as " + lg.getEmail());%></li>--%>
+                    <%}
+                    } else {
+                    %>
+                    <%}%>
             </ul>
         </nav>
- 
+
         <article>
             <h1>Your Pics</h1>
-        <%
-            java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-            if (lsPics == null) {
-        %>
-        <p>No Pictures found</p>
-        <%
-        } else {
-            Iterator<Pic> iterator;
-            iterator = lsPics.iterator();
-            while (iterator.hasNext()) {
-                Pic p = (Pic) iterator.next();
+            <%
+                java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
+                if (lsPics == null) {
+            %>
+            <p>No Pictures found</p>
+            <%
+            } else {
+                Iterator<Pic> iterator;
+                iterator = lsPics.iterator();
+                while (iterator.hasNext()) {
+                    Pic p = (Pic) iterator.next();
 
-        %>
-        <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
+            %>
+            <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
 
-            }
-            }
-        %>
+                    }
+                }
+                %>
         </article>
         <footer>
             <ul>
