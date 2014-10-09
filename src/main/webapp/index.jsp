@@ -22,25 +22,24 @@
         <nav>
             <ul>                             
                 <li><a href="upload.jsp">Upload</a></li>
-                    <%                                              
+                    <%
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-                                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                                <li><a href="/Instagrim/Logout">Logout</a></li>
-                                <br>
-                                <li><% out.println("You are logged in as " + lg.getUsername());%></li>
-                                <%--This line for when email is properly working --%>
-                                <%--<li><% out.println("You are logged in as " + lg.getEmail());%></li>--%>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <br>
+                <li><% out.println("You are logged in as " + lg.getUsername());%></li>
+                <li><a href="/Instagrim/Logout">Logout</a></li>
+                    <%--This line for when email is properly working --%>
+                    <%--<li><% out.println("You are logged in as " + lg.getEmail());%></li>--%>
                     <%}
-                            }else{
-                                %>
-                 <li><a href="register.jsp">Register</a></li>
+                    } else {
+                    %>
+                <li><a href="register.jsp">Register</a></li>
                 <li><a href="login.jsp">Login</a></li>
-                <%                                                                          
-                            }%>
+                    <%}%>
             </ul>
         </nav>
         <footer>

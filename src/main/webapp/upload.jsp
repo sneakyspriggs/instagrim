@@ -21,9 +21,9 @@
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
         </nav>
- 
+
         <article>
-            
+
             <!-- Added accept="image/*" to filter image types automatically in the browser-->
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">

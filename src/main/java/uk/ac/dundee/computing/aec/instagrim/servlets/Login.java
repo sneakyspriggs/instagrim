@@ -80,7 +80,7 @@ public class Login extends HttpServlet {
 	    rd.forward(request,response);
             
         }else{
-            response.sendRedirect("/Instagrim/login.jsp");
+            error("Login Incorrect", response);
         }
         
     }
