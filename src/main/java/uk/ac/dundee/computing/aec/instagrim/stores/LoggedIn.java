@@ -12,16 +12,15 @@ package uk.ac.dundee.computing.aec.instagrim.stores;
  */
 public class LoggedIn {
     boolean logedin=false;
-    String Username=null;
-    String Email=null;
+    String username=null;
     
     public void LogedIn(){     
     }   
     public void setUsername(String name){
-        this.Username=name;
+        this.username=name;
     }
     public String getUsername(){
-        return Username;
+        return username;
     }
     /*public void setEmail(String email){
         this.Email=email; (not working currently)
