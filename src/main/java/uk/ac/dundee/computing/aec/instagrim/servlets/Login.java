@@ -50,7 +50,9 @@ public class Login extends HttpServlet {
         
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        String email="null";
+        String email=request.getParameter("email");
+        String first_name=request.getParameter("first_name");        
+        String last_name=request.getParameter("last_name");
         
         if (username.equals(""))
         {
@@ -72,7 +74,9 @@ public class Login extends HttpServlet {
             LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
+            lg.setEmail(email);
+            lg.setFirstName(first_name);
+            lg.setLastName(last_name);
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);

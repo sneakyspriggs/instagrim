@@ -31,9 +31,8 @@
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <br>
                 <li><% out.println("You are logged in as " + lg.getUsername());%></li>
+                <li><a href="account.jsp">Account</a></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
-                    <%--This line for when email is properly working --%>
-                    <%--<li><% out.println("You are logged in as " + lg.getEmail());%></li>--%>
                     <%}
                     } else {
                     %>

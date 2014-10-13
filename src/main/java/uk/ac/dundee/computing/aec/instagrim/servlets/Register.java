@@ -59,11 +59,20 @@ public class Register extends HttpServlet {
             error("Enter a password", response);
             return;
         }     
+        else if (first_name.equals(""))
+        {
+            error("Enter a first name", response);
+            return;
+        } 
+        else if (last_name.equals(""))
+        {
+            error("Enter a last name", response);
+            return;
+        }          
         
         User us=new User();
         us.setCluster(cluster);
-        us.RegisterUser(username, password, email, first_name, last_name);
-        
+        us.RegisterUser(username, password, email, first_name, last_name);       
 	response.sendRedirect("/Instagrim");
         
     }
