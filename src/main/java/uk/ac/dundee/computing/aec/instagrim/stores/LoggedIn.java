@@ -32,13 +32,13 @@ public class LoggedIn {
         return email; 
     }
     public void setFirstName(String first_name){
-        this.username=first_name;
+        this.first_name=first_name;
     }
     public String getFirstName(){
         return first_name;
     }
     public void setLastName(String last_name){
-        this.username=last_name;
+        this.last_name=last_name;
     }
     public String getLastName(){
         return last_name;

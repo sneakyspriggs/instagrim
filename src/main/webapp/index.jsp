@@ -26,11 +26,13 @@
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
                             String UserName = lg.getUsername();
+                            System.out.println("Session in jsp "+session +  lg.getUsername()+lg.getlogedin());
                             if (lg.getlogedin()) {
                     %>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <br>
                 <li><% out.println("You are logged in as " + lg.getUsername());%></li>
+                
                 <li><a href="account.jsp">Account</a></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
                     <%}

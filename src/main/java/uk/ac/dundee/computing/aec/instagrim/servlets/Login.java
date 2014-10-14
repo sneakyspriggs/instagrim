@@ -79,7 +79,7 @@ public class Login extends HttpServlet {
             lg.setLastName(last_name);
             
             session.setAttribute("LoggedIn", lg);
-            System.out.println("Session in servlet "+session);
+            System.out.println("Session in servlet "+session + username+lg.getUsername());
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 	    rd.forward(request,response);
             
