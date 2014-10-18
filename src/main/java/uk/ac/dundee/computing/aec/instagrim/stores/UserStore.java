@@ -12,50 +12,50 @@ package uk.ac.dundee.computing.aec.instagrim.stores;
  */
 public class UserStore {
 
-    String username = null;
-    String email = null;
-    String first_name = null;
-    String last_name = null;
+    private String username = null;
+    private String email = null;
+    private String first_name = null;
+    private String last_name = null;
 
     public UserStore() {
     }
 
-public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
     }
-    
-    public String getUsername(){
+
+    public String getUsername() {
         return username;
     }
-   
-    public void setEmail(String email){
+
+    public void setEmail(String email) {
         this.email = email;
     }
-    
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
-    
-    public void setFirstName(String first_name){
+
+    public void setFirstName(String first_name) {
         this.first_name = first_name;
     }
-    
-    public String getFirstName(){
+
+    public String getFirstName() {
         return first_name;
     }
-    
-    public void setLastName(String last_name){
+
+    public void setLastName(String last_name) {
         this.last_name = last_name;
     }
-    
-    public String getLastName(){
+
+    public String getLastName() {
         return last_name;
-    }   
-    
-    public void setUser(String username, String email, String first_name, String last_name){
+    }
+
+    public void setUser(String username, String email, String first_name, String last_name) {
         this.username = username;
         this.email = email;
         this.first_name = first_name;
-        this.last_name = last_name;           
+        this.last_name = last_name;
     }
 }

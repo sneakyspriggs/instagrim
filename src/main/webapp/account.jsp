@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.UserStore" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,22 +19,19 @@
             <h2>Your world in Black and White</h2>
         </header>
         <h1>Your Information</h1>
-        <ul>
             <%
-                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                if (lg != null) {
-                    String UserName = lg.getUsername();
-                    if (lg.getlogedin()) {
+                UserStore userStore = (UserStore) request.getAttribute("store");
+                String login = userStore.getUsername();
+                String email = userStore.getEmail();
+                String firstname = userStore.getFirstName();
+                String lastname = userStore.getLastName();
             %>
-            <li><% out.println("You are logged in as " + lg.getUsername());%></li>
-            <li><% out.println("Your email address is registered as: " + lg.getEmail());%></li>
-            <li><% out.println("Your first name is registered as: " + lg.getFirstName());%></li> 
-            <li><% out.println("Your last name is registered as: " + lg.getLastName());%></li> 
-            <li><a href="/Instagrim/Logout">Logout</a></li>
-                <%}
-                } else {
-                %>
-                <%}%>
+        <ul>    
+            <li>You are logged in as: <%=login%></li>
+            <li>Your email address is: <%=email%></li>
+            <li>Your first name is: <%=firstname%></li>
+            <li>Your last name is: <%=lastname%></li>            
+            
         </ul>
         <footer>
             <ul>
