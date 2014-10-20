@@ -30,12 +30,13 @@
             <li>You are logged in as: <%=login%></li>
             <li>Your email address is: <%=email%></li>
             <li>Your first name is: <%=firstname%></li>
-            <li>Your last name is: <%=lastname%></li>            
+            <li>Your last name is: <%=lastname%></li>
             
         </ul>
         <footer>
             <ul>
                 <li class="footer"><a href="/Instagrim">Home</a></li>
+                <li><a href="/Instagrim/Logout">Logout</a></li>
                 <li>&COPY; Will Neal</li>
             </ul>
         </footer>

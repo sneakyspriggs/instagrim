@@ -39,7 +39,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.UserStore;
  *
  * @author williamneal
  */
-@WebServlet(urlPatterns = {"/account", "/account/*"})
+@WebServlet(urlPatterns = {"/Account", "/Account/*"})
 public class Account extends HttpServlet {
 
     private Cluster cluster;
@@ -47,7 +47,7 @@ public class Account extends HttpServlet {
 
     public Account() {
         super();
-        CommandsMap.put("View", 1);
+        CommandsMap.put("Account", 1);
     }
 
     public void init(ServletConfig config) throws ServletException {

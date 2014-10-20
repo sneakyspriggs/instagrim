@@ -7,6 +7,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.Pic" %>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.models.User" %> 
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.UserStore" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +36,7 @@
                 <br>
                 <li><% out.println("You are logged in as " + lg.getUsername());%></li>
                 
-                <li><a href="account.jsp">Account</a></li>
+                <li><a href="/Instagrim/Account/<%=lg.getUsername()%>">Account</a></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
                     <%}
                     } else {
