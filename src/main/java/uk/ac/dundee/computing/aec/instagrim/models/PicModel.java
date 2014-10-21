@@ -40,6 +40,8 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 
 public class PicModel {
 
+    /* Model designed to interface with a database for picture related acquisitions, deletions, etc */
+    
     Cluster cluster;
 
     public void PicModel() {
@@ -51,6 +53,7 @@ public class PicModel {
     }
 
     public void insertPic(byte[] b, String type, String name, String user, String caption) {
+        /* Method for adding pictures to the database */
         try {
             Convertors convertor = new Convertors();
 
@@ -159,6 +162,7 @@ public class PicModel {
     }
 
     public Pic getPic(int image_type, java.util.UUID picid) {
+        /* Method used to recover pictures from database for viewing */
         Session session = cluster.connect("instagrim");
         ByteBuffer bImage = null;
         String type = null;

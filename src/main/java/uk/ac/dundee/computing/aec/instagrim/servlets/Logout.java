@@ -22,7 +22,7 @@ import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
 /**
- *
+ * Servlet designed to handle logout requests
  * @author williamneal
  */
 @WebServlet(name = "Logout", urlPatterns = {"/Logout"})

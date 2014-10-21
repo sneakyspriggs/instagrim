@@ -9,10 +9,12 @@ import com.datastax.driver.core.utils.Bytes;
 import java.nio.ByteBuffer;
 
 /**
- *
- * @author Administrator
+ * Store designed to hold information regarding pictures 
+ * @author Will Neal
  */
 public class Pic {
+    
+    /* Store used for picture related info */
 
     private ByteBuffer bImage = null;
     private int length;

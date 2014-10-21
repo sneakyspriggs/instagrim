@@ -29,7 +29,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 
 /**
- * Servlet implementation class Image
+ * Servlet designed to handle image related requests
  */
 @WebServlet(urlPatterns = {
     "/Image",

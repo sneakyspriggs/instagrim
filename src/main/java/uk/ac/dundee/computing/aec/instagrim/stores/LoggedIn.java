@@ -7,8 +7,8 @@
 package uk.ac.dundee.computing.aec.instagrim.stores;
 
 /**
- *
- * @author Administrator
+ * Store designed to hold the logged in state of the session
+ * @author Will Neal
  */
 public class LoggedIn {
     boolean logedin=false;

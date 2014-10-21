@@ -20,8 +20,8 @@ import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 
 /**
- *
- * @author Administrator
+ *  Servlet designed to handle registration requests
+ * @author Will Neal
  */
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {

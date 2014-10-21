@@ -22,8 +22,8 @@ import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
 /**
- *
- * @author Administrator
+ * Servlet designed to handle login requests
+ * @author Will Neal
  */
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {

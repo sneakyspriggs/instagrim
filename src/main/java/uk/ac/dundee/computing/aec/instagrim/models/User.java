@@ -24,6 +24,8 @@ import uk.ac.dundee.computing.aec.instagrim.stores.UserStore;
  */
 public class User {
 
+    /* Model designed to interface with a database for user related acquisitions, deletions, etc */
+    
     Cluster cluster;
 
     public User() {
