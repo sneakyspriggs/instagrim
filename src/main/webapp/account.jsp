@@ -30,8 +30,7 @@
             <li>You are logged in as: <%=login%></li>
             <li>Your email address is: <%=email%></li>
             <li>Your first name is: <%=firstname%></li>
-            <li>Your last name is: <%=lastname%></li>
-            
+            <li>Your last name is: <%=lastname%></li>       
         </ul>
         <footer>
             <ul>

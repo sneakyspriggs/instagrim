@@ -35,8 +35,6 @@
                 <br>
                 <li><% out.println("You are logged in as " + lg.getUsername());%></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
-                    <%--This line for when email is properly working --%>
-                    <%--<li><% out.println("You are logged in as " + lg.getEmail());%></li>--%>
                     <%}
                     } else {
                     %>
@@ -56,14 +54,12 @@
                 Iterator<Pic> iterator;
                 iterator = lsPics.iterator();
                 while (iterator.hasNext()) {
-                    Pic p = (Pic) iterator.next();
-
-            %>
-            <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
-
-                    }
-                }
-                %>
+                    Pic p = (Pic) iterator.next(); %>
+                    
+            <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/>
+            <a><% out.println(p.getCap());%></a></br>
+            <%}}%>
+            
         </article>
         <footer>
             <ul>

@@ -29,8 +29,6 @@
                 <br>
                 <li><% out.println("You are logged in as " + lg.getUsername());%></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
-                    <%--This line for when email is properly working --%>
-                    <%--<li><% out.println("You are logged in as " + lg.getEmail());%></li>--%>
                     <%}
                     } else {
                     %>
@@ -45,7 +43,7 @@
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" accept="image/*" name="upfile"><br/>
-
+                Caption: <input type="text" name="caption">
                 <br/>
                 <input type="submit" value="Press"> to upload the file!
             </form>

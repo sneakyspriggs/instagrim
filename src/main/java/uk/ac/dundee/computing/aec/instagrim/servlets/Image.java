@@ -133,6 +133,8 @@ public class Image extends HttpServlet {
             
             String filename = part.getSubmittedFileName();
             
+            String caption = request.getParameter("caption");
+            
             InputStream is = request.getPart(part.getName()).getInputStream();
             int i = is.available();
             HttpSession session=request.getSession();
@@ -147,7 +149,7 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username);
+                tm.insertPic(b, type, filename, username, caption);
 
                 is.close();
             }
