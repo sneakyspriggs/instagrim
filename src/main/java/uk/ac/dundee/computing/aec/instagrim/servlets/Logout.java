@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
@@ -23,13 +22,13 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
 /**
  * Servlet designed to handle logout requests
+ *
  * @author williamneal
  */
 @WebServlet(name = "Logout", urlPatterns = {"/Logout"})
 public class Logout extends HttpServlet {
 
-    Cluster cluster=null;
-
+    Cluster cluster = null;
 
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
@@ -47,9 +46,9 @@ public class Logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         request.getSession().invalidate();
-         response.sendRedirect("/Instagrim");
+
+        request.getSession().invalidate();
+        response.sendRedirect("/Instagrim");
     }
 
     /**
@@ -70,5 +69,5 @@ public class Logout extends HttpServlet {
         out.close();
         return;
     }
-    
+
 }

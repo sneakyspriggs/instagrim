@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
@@ -20,12 +19,15 @@ import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 
 /**
- *  Servlet designed to handle registration requests
+ * Servlet designed to handle registration requests
+ *
  * @author Will Neal
  */
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
-    Cluster cluster=null;
+
+    Cluster cluster = null;
+
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
@@ -42,39 +44,32 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
-        String email=request.getParameter("email");
-        String first_name=request.getParameter("first_name");        
-        String last_name=request.getParameter("last_name");
-        
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String first_name = request.getParameter("first_name");
+        String last_name = request.getParameter("last_name");
+
         /* Error handling for blank registration input*/
-        if (username.equals(""))
-        {
-            error("Enter a username",response);
+        if (username.equals("")) {
+            error("Enter a username", response);
             return;
-        }
-        else if (password.equals(""))
-        {
+        } else if (password.equals("")) {
             error("Enter a password", response);
             return;
-        }     
-        else if (first_name.equals(""))
-        {
+        } else if (first_name.equals("")) {
             error("Enter a first name", response);
             return;
-        } 
-        else if (last_name.equals(""))
-        {
+        } else if (last_name.equals("")) {
             error("Enter a last name", response);
             return;
-        }          
-        
-        User us=new User();
+        }
+
+        User us = new User();
         us.setCluster(cluster);
-        us.RegisterUser(username, password, email, first_name, last_name);       
-	response.sendRedirect("/Instagrim");
-        
+        us.RegisterUser(username, password, email, first_name, last_name);
+        response.sendRedirect("/Instagrim");
+
     }
 
     /**
@@ -90,12 +85,10 @@ public class Register extends HttpServlet {
     private void error(String something, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
-        out.println("<h1>Input Error</h1>");
-        out.println("<h2>" + something + "</h2>");
+        out.println("Input Error");
+        out.println(something);
         out.close();
         return;
     }
 
-
 }
-

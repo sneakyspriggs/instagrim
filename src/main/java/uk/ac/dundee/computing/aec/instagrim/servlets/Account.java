@@ -36,7 +36,8 @@ import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.UserStore;
 
 /**
- *  Servlet designed to handle account.jsp requests
+ * Servlet designed to handle account.jsp requests
+ *
  * @author williamneal
  */
 @WebServlet(urlPatterns = {"/Account", "/Account/*"})

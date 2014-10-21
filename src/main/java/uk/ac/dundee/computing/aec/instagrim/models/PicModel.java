@@ -41,7 +41,6 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 public class PicModel {
 
     /* Model designed to interface with a database for picture related acquisitions, deletions, etc */
-    
     Cluster cluster;
 
     public void PicModel() {
@@ -219,43 +218,38 @@ public class PicModel {
     }
 
     public void deletePic(java.util.UUID picid, String user) {
-        
+
         Session session = cluster.connect("instagrim");
-        
+
         /* Prepared statements (and Bound) to perform the delete of a picture, in the pics part of the Database and the piclist part */
         PreparedStatement prepStateDeleteFromPics = session.prepare("DELETE FROM pics WHERE picid = ?");
         PreparedStatement prepStateDeleteFromPiclist = session.prepare("DELETE FROM userpiclist WHERE user = ? AND pic_added = ?");
         PreparedStatement prepStateInteractionTime = session.prepare("SELECT interaction_time,user FROM pics WHERE picid = ?");
-        
+
         BoundStatement BoundStateDeleteFromPics = new BoundStatement(prepStateDeleteFromPics);
         BoundStatement BoundStateDeleteFromPiclist = new BoundStatement(prepStateDeleteFromPiclist);
         BoundStatement BoundStateInteractionTime = new BoundStatement(prepStateInteractionTime);
-        
+
         ResultSet rs = session.execute(BoundStateInteractionTime.bind(picid));
-        
+
         /* Setting new variables to store username and a date */
         String login = "";
         Date added = new Date();
-        
-        if(rs.isExhausted())
-        {
+
+        if (rs.isExhausted()) {
             System.out.println("Error");
-        }
-        else
-        {
-            for(Row row: rs)
-            {
+        } else {
+            for (Row row : rs) {
                 /* Fetches the time the photo was added, and the user that added it */
                 added = row.getDate("interaction_time");
                 login = row.getString(user);
             }
         }
         /* Checks that the user attempting to perform delete is the owner of the photo */
-        if(login.equals(user))
-        {
+        if (login.equals(user)) {
             session.execute(BoundStateDeleteFromPics.bind(picid));
             session.execute(BoundStateDeleteFromPiclist.bind(login, added));
         }
-        
+
     }
 }

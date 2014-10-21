@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
@@ -23,13 +22,13 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
 /**
  * Servlet designed to handle login requests
+ *
  * @author Will Neal
  */
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
 
-    Cluster cluster=null;
-
+    Cluster cluster = null;
 
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
@@ -47,47 +46,44 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
-        String email=request.getParameter("email");
-        String first_name=request.getParameter("first_name");        
-        String last_name=request.getParameter("last_name");
-        
-        if (username.equals(""))
-        {
-            error("Enter a username",response);
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String first_name = request.getParameter("first_name");
+        String last_name = request.getParameter("last_name");
+
+        if (username.equals("")) {
+            error("Enter a username", response);
             return;
-        }
-        else if (password.equals(""))
-        {
+        } else if (password.equals("")) {
             error("Enter a password", response);
             return;
         }
-        
-        User us=new User();
+
+        User us = new User();
         us.setCluster(cluster);
-        boolean isValid=us.IsValidUser(username, password);
-        HttpSession session=request.getSession();
-        System.out.println("Session in servlet "+session);
-        if (isValid){
-            LoggedIn lg= new LoggedIn();
+        boolean isValid = us.IsValidUser(username, password);
+        HttpSession session = request.getSession();
+        System.out.println("Session in servlet " + session);
+        if (isValid) {
+            LoggedIn lg = new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
             lg.setEmail(email);
             lg.setFirstName(first_name);
             lg.setLastName(last_name);
-            
+
             session.setAttribute("LoggedIn", lg);
-            System.out.println("Session in servlet "+session + username+lg.getUsername());
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-	    rd.forward(request,response);
-            
-        }else{
+            System.out.println("Session in servlet " + session + username + lg.getUsername());
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
+
+        } else {
             error("Login Incorrect", response);
-         /* response.sendRedirect("/Instagrim/login.jsp"); */
+            /* response.sendRedirect("/Instagrim/login.jsp"); */
         }
-        
+
     }
 
     /**
@@ -103,10 +99,10 @@ public class Login extends HttpServlet {
     private void error(String something, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
-        out.println("<h1>Input Error</h1>");
-        out.println("<h2>" + something + "</h2>");
+        out.println("Input Error");
+        out.println(something);
         out.close();
         return;
     }
-    
+
 }
