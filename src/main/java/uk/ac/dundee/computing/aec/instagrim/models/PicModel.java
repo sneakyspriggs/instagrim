@@ -232,5 +232,30 @@ public class PicModel {
         BoundStatement BoundStateInteractionTime = new BoundStatement(prepStateInteractionTime);
         
         ResultSet rs = session.execute(BoundStateInteractionTime.bind(picid));
+        
+        /* Setting new variables to store username and a date */
+        String login = "";
+        Date added = new Date();
+        
+        if(rs.isExhausted())
+        {
+            System.out.println("Error");
+        }
+        else
+        {
+            for(Row row: rs)
+            {
+                /* Fetches the time the photo was added, and the user that added it */
+                added = row.getDate("interaction_time");
+                login = row.getString(user);
+            }
+        }
+        /* Checks that the user attempting to perform delete is the owner of the photo */
+        if(login.equals(user))
+        {
+            session.execute(BoundStateDeleteFromPics.bind(picid));
+            session.execute(BoundStateDeleteFromPiclist.bind(login, added));
+        }
+        
     }
 }
