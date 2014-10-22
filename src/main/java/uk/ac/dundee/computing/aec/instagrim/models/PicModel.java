@@ -242,7 +242,7 @@ public class PicModel {
             for (Row row : rs) {
                 /* Fetches the time the photo was added, and the user that added it */
                 added = row.getDate("interaction_time");
-                login = row.getString(user);
+                login = row.getString("user");
             }
         }
         /* Checks that the user attempting to perform delete is the owner of the photo */

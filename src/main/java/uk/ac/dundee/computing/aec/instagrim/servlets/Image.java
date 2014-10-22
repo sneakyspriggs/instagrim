@@ -37,7 +37,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
     "/Thumb/*",
     "/Images",
     "/Images/*",
-    "/Delete",
+    "/Delete/",
     "/Delete/*"
 })
 @MultipartConfig
@@ -162,19 +162,22 @@ public class Image extends HttpServlet {
 
     }
 
-    protected void deletePic(String numer, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        for (Part part : request.getParts()) {
+    protected void deletePic(String picNumber, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            /* Salvaged what I think I need from original doPost method above */
-            HttpSession session = request.getSession();
-            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-            String user = "";
-            user = lg.getUsername();
-            
-            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
-            rd.forward(request, response);
-        }
+        /* Added new parts from Display Image, that I need */
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
 
+        /* Standard setup for working with session, getting current user login name, later used to check picture is owned */
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        String user = "";
+        user = lg.getUsername();
+
+        /* Performs delete, redirects user to UserPics.jsp. */
+        tm.deletePic(java.util.UUID.fromString(picNumber), user);
+        RequestDispatcher rd = request.getRequestDispatcher("/UserPics");
+        rd.forward(request, response);
     }
 
     private void error(String something, HttpServletResponse response) throws ServletException, IOException {

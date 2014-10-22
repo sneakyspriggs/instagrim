@@ -55,8 +55,11 @@
                 iterator = lsPics.iterator();
                 while (iterator.hasNext()) {
                     Pic p = (Pic) iterator.next(); %>
-                    
+            <!-- Next line adds actual image to page -->       
             <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/>
+            <!-- Next line adds delete button to image -->
+            <a href="/Instagrim/Delete/<%=p.getSUUID()%>" >Delete </a></br>
+            <!-- Next line adds caption to the image -->
             <a><% out.println(p.getCap());%></a></br>
             <%}}%>
             
