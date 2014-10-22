@@ -218,7 +218,7 @@ public class PicModel {
     }
 
     public void deletePic(java.util.UUID picid, String user) {
-
+        
         Session session = cluster.connect("instagrim");
 
         /* Prepared statements (and Bound) to perform the delete of a picture, in the pics part of the Database and the piclist part */
@@ -249,6 +249,8 @@ public class PicModel {
         if (login.equals(user)) {
             session.execute(BoundStateDeleteFromPics.bind(picid));
             session.execute(BoundStateDeleteFromPiclist.bind(login, added));
+            /* Closes the session */
+            session.close();
         }
 
     }

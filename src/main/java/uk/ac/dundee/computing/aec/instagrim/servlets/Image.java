@@ -36,7 +36,9 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
     "/Image/*",
     "/Thumb/*",
     "/Images",
-    "/Images/*"
+    "/Images/*",
+    "/Delete",
+    "/Delete/*"
 })
 @MultipartConfig
 
@@ -55,6 +57,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("Image", 1);
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
+        CommandsMap.put("Delete", 4);
 
     }
 
@@ -86,6 +89,9 @@ public class Image extends HttpServlet {
                 break;
             case 3:
                 DisplayImage(Convertors.DISPLAY_THUMB, args[2], response);
+                break;
+            case 4:
+                deletePic(args[2], request, response);
                 break;
             default:
                 error("Bad Operator", response);
@@ -156,12 +162,27 @@ public class Image extends HttpServlet {
 
     }
 
-    private void error(String mess, HttpServletResponse response) throws ServletException, IOException {
+    protected void deletePic(String numer, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        for (Part part : request.getParts()) {
+
+            /* Salvaged what I think I need from original doPost method above */
+            HttpSession session = request.getSession();
+            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+            String user = "";
+            user = lg.getUsername();
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
+            rd.forward(request, response);
+        }
+
+    }
+
+    private void error(String something, HttpServletResponse response) throws ServletException, IOException {
 
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
-        out.println("<h1>You have a na error in your input</h1>");
-        out.println("<h2>" + mess + "</h2>");
+        out.println("Input Error");
+        out.println(something);
         out.close();
         return;
     }

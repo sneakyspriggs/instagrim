@@ -87,8 +87,8 @@ public class Account extends HttpServlet {
     private void error(String something, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
-        out.println("<h1>Input Error</h1>");
-        out.println("<h2>" + something + "</h2>");
+        out.println("Input Error");
+        out.println(something);
         out.close();
         return;
     }
