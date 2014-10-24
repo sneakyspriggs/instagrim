@@ -176,11 +176,11 @@ public class Image extends HttpServlet {
 
         /* Performs delete, redirects user to UserPics.jsp. */
         tm.deletePic(java.util.UUID.fromString(picNumber), user);
-        RequestDispatcher rd = request.getRequestDispatcher("/UserPics");
-        rd.forward(request, response);
+        response.sendRedirect("/Instagrim/Images/" + user);
     }
 
-    private void error(String something, HttpServletResponse response) throws ServletException, IOException {
+
+private void error(String something, HttpServletResponse response) throws ServletException, IOException {
 
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
