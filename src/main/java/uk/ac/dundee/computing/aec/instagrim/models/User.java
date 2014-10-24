@@ -113,4 +113,30 @@ public class User {
         return userStore;
     }
 
+    public boolean userCheck(String username) {
+
+        /* Method designed to query the database as to whether or not a username is already in user there or not. Used in the Register.java servlet for error handling in this respect */
+        /* Works by having the username to be checked passed to it from Register.java, checks agains the database for repitions and returns true or false depending on the result */
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select email from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return false;
+        } else {
+            for (Row row : rs) {
+
+                String StoredPass = row.getString("email");
+
+                return true;
+
+            }
+            return false;
+        }
+    }
 }

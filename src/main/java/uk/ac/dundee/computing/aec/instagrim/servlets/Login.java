@@ -54,10 +54,10 @@ public class Login extends HttpServlet {
         String last_name = request.getParameter("last_name");
 
         if (username.equals("")) {
-            error("Enter a username", response);
+            error("Enter a username, please press back and try again", response);
             return;
         } else if (password.equals("")) {
-            error("Enter a password", response);
+            error("Enter a password, please press back and try again", response);
             return;
         }
 
@@ -80,7 +80,7 @@ public class Login extends HttpServlet {
             rd.forward(request, response);
 
         } else {
-            error("Login Incorrect", response);
+            error("Login Incorrect, please press back and try again", response);
             /* response.sendRedirect("/Instagrim/login.jsp"); */
         }
 

@@ -31,7 +31,6 @@ public class Logout extends HttpServlet {
     Cluster cluster = null;
 
     public void init(ServletConfig config) throws ServletException {
-        // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
     }
 
@@ -47,6 +46,7 @@ public class Logout extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        /* Simply invalidates the current session to log out the user, then redirects to the home page */
         request.getSession().invalidate();
         response.sendRedirect("/Instagrim");
     }

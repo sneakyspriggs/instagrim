@@ -118,7 +118,6 @@ public class Image extends HttpServlet {
 
         response.setContentType(p.getType());
         response.setContentLength(p.getLength());
-        //out.write(Image);
         InputStream is = new ByteArrayInputStream(p.getBytes());
         BufferedInputStream input = new BufferedInputStream(is);
         byte[] buffer = new byte[8192];
@@ -135,7 +134,8 @@ public class Image extends HttpServlet {
             String type = part.getContentType();
 
             String filename = part.getSubmittedFileName();
-
+            
+            /* Retrieves caption from database to display with appropriate image */
             String caption = request.getParameter("caption");
 
             InputStream is = request.getPart(part.getName()).getInputStream();

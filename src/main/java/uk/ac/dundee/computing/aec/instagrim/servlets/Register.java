@@ -52,23 +52,32 @@ public class Register extends HttpServlet {
 
         /* Error handling for blank registration input*/
         if (username.equals("")) {
-            error("Enter a username", response);
+            error("Enter a username, please press back and try again", response);
             return;
         } else if (password.equals("")) {
-            error("Enter a password", response);
+            error("Enter a password, please press back and try again", response);
             return;
         } else if (first_name.equals("")) {
-            error("Enter a first name", response);
+            error("Enter a first name, please press back and try again", response);
             return;
         } else if (last_name.equals("")) {
-            error("Enter a last name", response);
+            error("Enter a last name, please press back and try again", response);
             return;
         }
 
+        
+        /* This part of the register is very important. It does not let the register itself run until it has checked using a method in the User Model that the username trying to be registered is */
+        /* not already in use. Before adding this, it would just overwrite an existing user if you tried to do this, obviously a big problem! */
         User us = new User();
         us.setCluster(cluster);
-        us.RegisterUser(username, password, email, first_name, last_name);
-        response.sendRedirect("/Instagrim");
+        if ("" != username) {
+            if (us.userCheck(username)) {
+                error("Username: " + username + " is already in use. Please click back, and try to register again with a new one", response);
+            }
+        } else {
+            us.RegisterUser(username, password, email, first_name, last_name);
+            response.sendRedirect("/Instagrim");
+        }
 
     }
 
@@ -85,7 +94,7 @@ public class Register extends HttpServlet {
     private void error(String something, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
-        out.println("Input Error");
+        out.println("Input Error!");
         out.println(something);
         out.close();
         return;
