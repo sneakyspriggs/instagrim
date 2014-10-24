@@ -49,6 +49,7 @@ public class Account extends HttpServlet {
     public Account() {
         super();
         CommandsMap.put("Account", 1);
+        CommandsMap.put("editAccount", 2);
     }
 
     public void init(ServletConfig config) throws ServletException {

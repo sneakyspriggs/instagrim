@@ -64,8 +64,7 @@ public class Register extends HttpServlet {
             error("Enter a last name, please press back and try again", response);
             return;
         }
-
-        
+       
         /* This part of the register is very important. It does not let the register itself run until it has checked using a method in the User Model that the username trying to be registered is */
         /* not already in use. Before adding this, it would just overwrite an existing user if you tried to do this, obviously a big problem! */
         User us = new User();

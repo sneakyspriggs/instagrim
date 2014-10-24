@@ -17,6 +17,7 @@ import uk.ac.dundee.computing.aec.instagrim.lib.AeSimpleSHA1;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 import uk.ac.dundee.computing.aec.instagrim.stores.UserStore;
+import uk.ac.dundee.computing.aec.instagrim.lib.AeSimpleSHA1;
 
 /**
  *
@@ -124,7 +125,7 @@ public class User {
         rs = session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         username));
-        
+
         if (rs.isExhausted()) {
             System.out.println("No Images returned");
             return false;

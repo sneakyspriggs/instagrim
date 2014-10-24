@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.UserStore" %>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,23 +14,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+        <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>
         <header>
             <h1>InstaGrim!</h1>
             <h2>Your world in Black and White</h2>
         </header>
         <h1>Your Information</h1>
-            <%
-                UserStore userStore = (UserStore) request.getAttribute("store");
-                String login = userStore.getUsername();
-                String email = userStore.getEmail();
-                String firstname = userStore.getFirstName();
-                String lastname = userStore.getLastName();
-            %>
+        <%
+            UserStore userStore = (UserStore) request.getAttribute("store");
+            String login = userStore.getUsername();
+            String email = userStore.getEmail();
+            String firstname = userStore.getFirstName();
+            String lastname = userStore.getLastName();
+        %>
         <ul>    
             <li>You are logged in as: <%=login%></li>
             <li>Your email address is: <%=email%></li>
             <li>Your first name is: <%=firstname%></li>
-            <li>Your last name is: <%=lastname%></li>       
+            <li>Your last name is: <%=lastname%></li> 
         </ul>
         <footer>
             <ul>
