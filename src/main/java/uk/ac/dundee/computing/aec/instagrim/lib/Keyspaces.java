@@ -15,8 +15,8 @@ public final class Keyspaces {
         try {
             //Add some keyspaces here
             String createkeyspace = "create keyspace if not exists instagrim  WITH replication = {'class':'SimpleStrategy', 'replication_factor':1}";
-            String CreatePicTable = "CREATE TABLE if not exists instagrim.Pics ("
-                    + " user varchar,"
+            String CreatePicTable = "CREATE TABLE if not exists instagrim.pics ("
+                    + " user text,"
                     + " picid uuid, "
                     + " interaction_time timestamp,"
                     + " title varchar,"
@@ -25,30 +25,24 @@ public final class Keyspaces {
                     + " processed blob,"
                     + " imagelength int,"
                     + " thumblength int,"
-                    + "  processedlength int,"
-                    + " type  varchar,"
-                    + " name  varchar,"
+                    + " processedlength int,"
+                    + " type  text,"
+                    + " name  text,"
                     + " PRIMARY KEY (picid)"
                     + ")";
             String Createuserpiclist = "CREATE TABLE if not exists instagrim.userpiclist (\n"
                     + "picid uuid,\n"
-                    + "user varchar,\n"
-                    + "cap varchar,\n"
+                    + "user text,\n"
+                    + "cap text,\n"
                     + "pic_added timestamp,\n"
                     + "PRIMARY KEY (user,pic_added)\n"
                     + ") WITH CLUSTERING ORDER BY (pic_added desc);";
-            String CreateAddressType = "CREATE TYPE if not exists instagrim.address (\n"
-                    + "      street text,\n"
-                    + "      city text,\n"
-                    + "      zip int\n"
-                    + "  );";
             String CreateUserProfile = "CREATE TABLE if not exists instagrim.userprofiles (\n"
                     + "      login text PRIMARY KEY,\n"
-                     + "     password text,\n"
+                    + "      email text,\n"
+                    + "      password text,\n"
                     + "      first_name text,\n"
                     + "      last_name text,\n"
-                    + "      email set<text>,\n"
-                    + "      addresses  map<text, frozen <address>>\n"
                     + "  );";
             Session session = c.connect();
             try {
@@ -80,13 +74,7 @@ public final class Keyspaces {
             } catch (Exception et) {
                 System.out.println("Can't create user pic list table " + et);
             }
-            System.out.println("" + CreateAddressType);
-            try {
-                SimpleStatement cqlQuery = new SimpleStatement(CreateAddressType);
-                session.execute(cqlQuery);
-            } catch (Exception et) {
-                System.out.println("Can't create Address type " + et);
-            }
+
             System.out.println("" + CreateUserProfile);
             try {
                 SimpleStatement cqlQuery = new SimpleStatement(CreateUserProfile);
