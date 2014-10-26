@@ -14,7 +14,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>
+        <% UserStore store = (UserStore) request.getAttribute("UserStore");
+             LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn"); %>
         <header>
             <h1>InstaGrim!</h1>
             <h2>Your world in Black and White</h2>
@@ -31,7 +32,9 @@
             <li>You are logged in as: <%=login%></li>
             <li>Your email address is: <%=email%></li>
             <li>Your first name is: <%=firstname%></li>
-            <li>Your last name is: <%=lastname%></li> 
+            <li>Your last name is: <%=lastname%></li>
+            <%-- Link to new edit profile page, can only be accessed by a user on their own profile page --%>
+            <li><a href="/Instagrim/editAccount/<%=lg.getUsername()%>">Edit your profile information</a></li>
         </ul>
         <footer>
             <ul>

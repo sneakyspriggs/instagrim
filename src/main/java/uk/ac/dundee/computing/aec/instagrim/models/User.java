@@ -33,6 +33,7 @@ public class User {
     }
 
     public boolean RegisterUser(String username, String Password, String email, String first_name, String last_name) {
+        /* Method for registering a new user */
         AeSimpleSHA1 sha1handler = new AeSimpleSHA1();
         String EncodedPassword = null;
         try {
@@ -53,7 +54,16 @@ public class User {
         return true;
     }
 
+    public void updateUserInfo(String username, String firstName, String lastName, String email) {
+        /* Method to enable the updating of user account information, works with the edit account functionality */
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("update userprofiles set first_name = ?, last_name = ?, email = ? where login = ?");
+        BoundStatement bs = new BoundStatement(ps);
+        session.execute(bs.bind(firstName, lastName, email, username));
+    }
+
     public boolean IsValidUser(String username, String Password) {
+        /* Method to check if the username and password are correct on login attempt */
         AeSimpleSHA1 sha1handler = new AeSimpleSHA1();
         String EncodedPassword = null;
         try {
@@ -115,7 +125,6 @@ public class User {
     }
 
     public boolean userCheck(String username) {
-
         /* Method designed to query the database as to whether or not a username is already in user there or not. Used in the Register.java servlet for error handling in this respect */
         /* Works by having the username to be checked passed to it from Register.java, checks agains the database for repitions and returns true or false depending on the result */
         Session session = cluster.connect("instagrim");
